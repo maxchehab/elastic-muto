@@ -59,13 +59,6 @@ export class Condition {
     prop(prop: string): this;
 
     /**
-     * Sets the condition type to boolean with given parameter.
-     *
-     * @param {boolean} trueOrFalse `true` or `false`
-     */
-    is(trueOrFalse: boolean): this;
-
-    /**
      * Sets the type of condition as equality with given value.
      *
      * @param {*} value A valid string/number/date to check equality ag
@@ -106,32 +99,6 @@ export class Condition {
      * @param {*} value A valid string/number/date.
      */
     gte(value: any): this;
-
-    /**
-     * Sets the type of condition to check value exists.
-     *
-     */
-    exists(): this;
-
-    /**
-     * Sets the type of condition to check value is missing.
-     *
-     */
-    missing(): this;
-
-    /**
-     * Sets the type of condition to check property contains given value.
-     *
-     * @param {*} value A valid string
-     */
-    contains(value: any): this;
-
-    /**
-     * Sets the type of condition to check property does not contain given value.
-     *
-     * @param {*} value A valid string
-     */
-    notContains(value: any): this;
 
     /**
      * Builds and returns muto syntax for Property Condition
