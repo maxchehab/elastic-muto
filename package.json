@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/booleanapp/elastic-muto.git"
+    "url": "https://github.com/maxchehab/elastic-muto.git"
   },
   "keywords": [
     "elasticsearch",
@@ -45,7 +45,7 @@
   "author": "Suhas Karanth <sudo.suhas@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/booleanapp/elastic-muto/issues"
+    "url": "https://github.com/maxchehab/elastic-muto/issues"
   },
   "homepage": "https://muto.js.org",
   "pre-commit": "lint-staged",
