@@ -20,18 +20,13 @@ const explorer = cosmiconfig('muto', {
 });
 
 const qryBuilder = Object.assign({}, qryBuilderDef);
-try {
-    debug('Loading user config using cosmiconfig(sync)');
-    const result = explorer.load('.');
-    if (!isNil(result)) {
-        debug('Successfully parsed config -', result);
-        Object.assign(qryBuilder, result.config);
-    } else {
-        debug('muto.config.js not found');
-    }
-} catch (err) {
-    console.error('Failed to parse config!');
-    console.error(err);
+debug('Loading user config using cosmiconfig(sync)');
+const result = explorer.load('.');
+if (!isNil(result)) {
+    debug('Successfully parsed config -', result);
+    Object.assign(qryBuilder, result.config);
+} else {
+    debug('muto.config.js not found');
 }
 
 /**
@@ -40,7 +35,7 @@ try {
  * @example
  * // Pass expression as string
  * const qry = muto.parse(
- *     '["discount"] is false or (["psngr_cnt"] > 81 and ["booking_mode"] contains "Airport")'
+ *     '"discount" is false or ("psngr_cnt" > 81 and "booking_mode" == "Airport")'
  * )
  *
  * // OR
@@ -51,7 +46,7 @@ try {
  *         .or(
  *             muto.where()
  *                 .and(muto.cn('psngr_cnt', 'gt', 81))
- *                 .and('["booking_mode"] contains "Airport"')
+ *                 .and('"booking_mode" == "Airport"')
  *         )
  * );
  *
@@ -105,12 +100,15 @@ module.exports = function parse(expr, notAnalysedFields) {
         return mutoParser.parse(
             `(${strExpr})`,
             Object.assign(
-                { notAnalysedFields: new Set(notAnalysedFields), debug },
+                {
+                    notAnalysedFields: new Set(notAnalysedFields),
+                    debug
+                },
                 qryBuilder
             )
         );
     } catch (err) {
-        console.error('Failed to parse expression', strExpr);
+        debug('Failed to parse expression', strExpr);
         err.expression = strExpr;
         throw err;
     }

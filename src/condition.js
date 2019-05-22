@@ -131,60 +131,6 @@ class Condition {
     }
 
     /**
-     * Sets the type of condition to check value exists.
-     *
-     * @returns {Condition} returns `this` so that calls can be chained
-     */
-    exists() {
-        this._operator = 'exists';
-        return this;
-    }
-
-    /**
-     * Sets the type of condition to check value is missing.
-     *
-     * @returns {Condition} returns `this` so that calls can be chained
-     */
-    missing() {
-        this._operator = 'missing';
-        return this;
-    }
-
-    /**
-     * Sets the type of condition to check property contains given value.
-     *
-     * @param {*} value A valid string
-     * @returns {Condition} returns `this` so that calls can be chained
-     */
-    contains(value) {
-        this._operator = 'contains';
-        this._value = value;
-        return this;
-    }
-
-    /**
-     *
-     * @private
-     * @param {*} value A valid string
-     * @returns {Condition} returns `this` so that calls can be chained
-     */
-    notcontains(value) {
-        return this.notContains(value);
-    }
-
-    /**
-     * Sets the type of condition to check property does not contain given value.
-     *
-     * @param {*} value A valid string
-     * @returns {Condition} returns `this` so that calls can be chained
-     */
-    notContains(value) {
-        this._operator = '!contains';
-        this._value = value;
-        return this;
-    }
-
-    /**
      * Builds and returns muto syntax for Property Condition
      *
      * @returns {string} returns a string which maps to the muto syntax for
@@ -195,9 +141,9 @@ class Condition {
         // For exists and missing, thisn._value _should_ be undefined
         // We just check if the operator is one of the 2.
         if (this._operator === 'exists' || this._operator === 'missing') {
-            return `["${this._prop}"] ${this._operator}`;
+            return `"${this._prop}" ${this._operator}`;
         }
-        return `["${this._prop}"] ${this._operator} ${JSON.stringify(
+        return `"${this._prop}" ${this._operator} ${JSON.stringify(
             this._value
         )}`;
     }

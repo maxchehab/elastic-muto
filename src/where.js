@@ -18,10 +18,10 @@ const OR = 'or';
  *             // Pass conditions using helper classes
  *             .and(muto.cn('psngr_cnt', 'gt', 81))
  *             // Or a simple string will do
- *             .and('["booking_mode"] contains "Airport"')
+ *             .and('"booking_mode" contains "Airport"')
  *     )
  *     .build();
- * '["discount"] is false or (["psngr_cnt"] > 81 and ["booking_mode"] contains "Airport")'
+ * '"discount" is false or ("psngr_cnt" > 81 and "booking_mode" contains "Airport")'
  *
  * @param {Condition|Where|string} [condition]
  */
