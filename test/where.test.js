@@ -2,10 +2,10 @@ import * as muto from '../src';
 
 const { Where, Condition } = muto;
 
-const cn1 = new Condition('anime').notContains('fillers');
+const cn1 = new Condition('anime').ne('fillers');
 const cn2 = new Condition('elasticsearch').eq('awesome');
-const strCn1 = '["one_piece"] exists';
-const strCn2 = '["awesome"] is true';
+const strCn1 = '"one_piece" > 1';
+const strCn2 = '"awesome" == true';
 
 describe('Where builder', () => {
     it('can be instantiated with a condition', () => {
@@ -29,7 +29,7 @@ describe('Where builder', () => {
         spy.mockRestore();
     });
 
-    it('can handle both string and object conditions', () => {
+    it('can handle both string and number conditions', () => {
         const where = new Where(strCn2).and(cn1).build();
         expect(where).toBe(`(${strCn2} and ${cn1.build()})`);
     });

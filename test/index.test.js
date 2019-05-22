@@ -36,7 +36,7 @@ describe('index.js', () => {
             // const spyParse = jest.spyOn(muto, 'parse');
             const spyConsole = jest.spyOn(console, 'log');
 
-            muto.prettyPrint('["awesome"] is true');
+            muto.prettyPrint('"awesome" == "true"');
 
             // expect(spyParse).toHaveBeenCalled();
             expect(spyConsole).toHaveBeenCalled();

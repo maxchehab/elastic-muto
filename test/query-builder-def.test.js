@@ -1,4 +1,3 @@
-import * as bob from 'elastic-builder';
 import qryBldrDef from '../src/query-builder-def';
 import {
     conditions,
@@ -30,19 +29,6 @@ describe('query builder default', () => {
                 expect(qry).toBeInstanceOf(cnQryMap[cn].constructor);
                 expect(qry).toEqual(cnQryMap[cn]);
             });
-        });
-
-        test('string equals for not analyzed field', () => {
-            const qry = qryBldrDef.strEq(...qryBldrArgs.strEqNotAnalyzed);
-
-            expect(qry).toBeInstanceOf(bob.TermQuery);
-            expect(qry).toEqual(cnQryMap.strEqNotAnalyzed);
-        });
-
-        test('string not equals for not analyzed field', () => {
-            const qry = qryBldrDef.strNe(...qryBldrArgs.strNeNotAnalyzed);
-            expect(qry).toBeInstanceOf(bob.BoolQuery);
-            expect(qry).toEqual(cnQryMap.strNeNotAnalyzed);
         });
     });
 

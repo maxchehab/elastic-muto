@@ -5,7 +5,7 @@ const { Condition } = muto;
 describe('Condition builder', () => {
     it('can be instantiated with params', () => {
         const cn = new Condition('my_prop', 'eq', 10).build();
-        expect(cn).toBe('["my_prop"] == 10');
+        expect(cn).toBe('"my_prop" == 10');
     });
 
     it('aliases work as expected', () => {
@@ -15,22 +15,8 @@ describe('Condition builder', () => {
     });
 
     it('does not throw error in constructor for valid operators', () => {
-        [
-            'is',
-            'eq',
-            'ne',
-            'lt',
-            'lte',
-            'gt',
-            'gte',
-            'contains',
-            'notcontains'
-        ].forEach(operator =>
+        ['eq', 'ne', 'lt', 'lte', 'gt', 'gte'].forEach(operator =>
             expect(() => new Condition('my_prop', operator, 10)).not.toThrow()
-        );
-
-        ['exists', 'missing'].forEach(operator =>
-            expect(() => new Condition('my_prop', operator)).not.toThrow()
         );
     });
 
@@ -51,15 +37,7 @@ describe('Condition builder', () => {
             .prop('my_prop')
             .eq('dancing monkeys')
             .build();
-        expect(cn).toBe('["my_prop"] == "dancing monkeys"');
-    });
-
-    it('builds boolean condition', () => {
-        const cn = new Condition()
-            .prop('my_prop')
-            .is(true)
-            .build();
-        expect(cn).toBe('["my_prop"] is true');
+        expect(cn).toBe('"my_prop" == "dancing monkeys"');
     });
 
     it('builds equality condition', () => {
@@ -67,7 +45,7 @@ describe('Condition builder', () => {
             .prop('my_prop')
             .eq('dancing monkeys')
             .build();
-        expect(cn).toBe('["my_prop"] == "dancing monkeys"');
+        expect(cn).toBe('"my_prop" == "dancing monkeys"');
     });
 
     it('builds inequality condition', () => {
@@ -75,7 +53,7 @@ describe('Condition builder', () => {
             .prop('my_prop')
             .ne('dancing monkeys')
             .build();
-        expect(cn).toBe('["my_prop"] != "dancing monkeys"');
+        expect(cn).toBe('"my_prop" != "dancing monkeys"');
     });
 
     it('builds less than condition', () => {
@@ -83,7 +61,7 @@ describe('Condition builder', () => {
             .prop('my_prop')
             .lt(299792458)
             .build();
-        expect(cn).toBe('["my_prop"] < 299792458');
+        expect(cn).toBe('"my_prop" < 299792458');
     });
 
     it('builds less than or equal to condition', () => {
@@ -91,7 +69,7 @@ describe('Condition builder', () => {
             .prop('my_prop')
             .lte(299792458)
             .build();
-        expect(cn).toBe('["my_prop"] <= 299792458');
+        expect(cn).toBe('"my_prop" <= 299792458');
     });
 
     it('builds greater than condition', () => {
@@ -99,7 +77,7 @@ describe('Condition builder', () => {
             .prop('my_prop')
             .gt(299792458)
             .build();
-        expect(cn).toBe('["my_prop"] > 299792458');
+        expect(cn).toBe('"my_prop" > 299792458');
     });
 
     it('builds greater than or equal to condition', () => {
@@ -107,39 +85,7 @@ describe('Condition builder', () => {
             .prop('my_prop')
             .gte(299792458)
             .build();
-        expect(cn).toBe('["my_prop"] >= 299792458');
-    });
-
-    it('builds property exists condition', () => {
-        const cn = new Condition()
-            .prop('one_piece')
-            .exists()
-            .build();
-        expect(cn).toBe('["one_piece"] exists');
-    });
-
-    it('builds property missing condition', () => {
-        const cn = new Condition()
-            .prop('the_last_airbender')
-            .missing()
-            .build();
-        expect(cn).toBe('["the_last_airbender"] missing');
-    });
-
-    it('builds contains condition', () => {
-        const cn = new Condition()
-            .prop('potion')
-            .contains('magic')
-            .build();
-        expect(cn).toBe('["potion"] contains "magic"');
-    });
-
-    it('builds notcontains condition', () => {
-        const cn = new Condition()
-            .prop('anime')
-            .notContains('fillers')
-            .build();
-        expect(cn).toBe('["anime"] !contains "fillers"');
+        expect(cn).toBe('"my_prop" >= 299792458');
     });
 
     it('delegates to the build function on calling toJSON', () => {
