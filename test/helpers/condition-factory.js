@@ -58,20 +58,11 @@ export const cnQryMap = {
     numGt: bob.rangeQuery('contributors').gt(1),
     numGte: bob.rangeQuery('contributors').gte(1),
     numEq: bob.termQuery('idiots', 0),
-    numNe: bob
-        .boolQuery()
-        .must(bob.existsQuery('idiots'))
-        .mustNot(bob.termQuery('idiots', 1)),
+    numNe: bob.boolQuery().mustNot(bob.termQuery('idiots', 1)),
     strEq: bob.termQuery('elasticsearch.keyword', 'awesome'),
     strEqNotAnalyzed: bob.termQuery('elasticsearch', 'awesome'),
-    strNe: bob
-        .boolQuery()
-        .must(bob.existsQuery('foo'))
-        .mustNot(bob.termQuery('foo.keyword', 'bar')),
-    strNeNotAnalyzed: bob
-        .boolQuery()
-        .must(bob.existsQuery('foo'))
-        .mustNot(bob.termQuery('foo', 'bar'))
+    strNe: bob.boolQuery().mustNot(bob.termQuery('foo.keyword', 'bar')),
+    strNeNotAnalyzed: bob.boolQuery().mustNot(bob.termQuery('foo', 'bar'))
 };
 
 export const qryBldrArgs = {

@@ -3,7 +3,7 @@
 const debug = require('debug')('elastic-muto');
 
 const {
-    termLevelQueries: { TermQuery, RangeQuery, ExistsQuery },
+    termLevelQueries: { TermQuery, RangeQuery },
     compoundQueries: { BoolQuery }
 } = require('elastic-builder/lib/queries');
 
@@ -47,9 +47,7 @@ module.exports = {
     numNe(key, value) {
         debug('Number property inequality condition');
         debug('key - %s, value - %s', key, value);
-        return new BoolQuery()
-            .must(new ExistsQuery(key))
-            .mustNot(new TermQuery(key, value));
+        return new BoolQuery().mustNot(new TermQuery(key, value));
     },
 
     // Condition builder for string equality
@@ -65,9 +63,7 @@ module.exports = {
         debug('String property inequality condition');
         debug('key - %s, value - %s', key, value);
         const fieldName = notAnalysedFields.has(key) ? key : `${key}.keyword`;
-        return new BoolQuery()
-            .must(new ExistsQuery(key))
-            .mustNot(new TermQuery(fieldName, value));
+        return new BoolQuery().mustNot(new TermQuery(fieldName, value));
     },
 
     // Function for building property key

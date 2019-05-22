@@ -1,6 +1,6 @@
 {
-  "name": "elastic-muto",
-  "version": "2.0.0",
+  "name": "@maxchehab/elastic-muto",
+  "version": "2.0.1",
   "description": "Easy expressive search queries for Elasticsearch",
   "main": "lib/index.js",
   "files": [
@@ -23,8 +23,7 @@
     "report": "npm test -- --coverage --coverageReporters=html --coverageReporters=text",
     "print-version": "cross-env-shell echo v$npm_package_version",
     "prepublishOnly": "npm run -s build",
-    "postpublish": "bash deploy-docs.sh",
-    "release": "npm run -s build; npm-github-release"
+    "postpublish": "bash deploy-docs.sh"
   },
   "repository": {
     "type": "git",
@@ -64,8 +63,7 @@
     "lodash.isempty": "^4.4.0",
     "lodash.isfunction": "^3.0.8",
     "lodash.isnil": "^4.0.0",
-    "lodash.isstring": "^4.0.1",
-    "tsc": "^1.20150623.0"
+    "lodash.isstring": "^4.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

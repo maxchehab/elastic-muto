@@ -12,7 +12,10 @@ import { BoolQuery } from 'elastic-builder';
  * parsing the expression
  * @throws {SyntaxError} If expression is an invalid where condition
  */
-export function parse(expr: string | Where | Condition, notAnalysedFields?: string[]): BoolQuery;
+export function parse(
+    expr: string | Where | Condition,
+    notAnalysedFields?: string[]
+): BoolQuery;
 
 interface Location {
     line: number;
@@ -21,8 +24,8 @@ interface Location {
 }
 
 interface LocationRange {
-    start: Location,
-    end: Location
+    start: Location;
+    end: Location;
 }
 
 interface ExpectedItem {
@@ -45,7 +48,7 @@ export interface SyntaxError extends Error {
  *
  * @param {string} [prop] Name of the property key to crate condition against
  * @param {string} [operator] Operator for the condition. One of `is`, `eq`,
- * `ne`, `lt`, `lte`, `gt`, `gte`, `exists`, `missing`, `contain`, `notcontain`
+ * `ne`, `lt`, `lte`, `gt`, `gte`
  * @param {*} [value] Value for the property condition
  */
 export class Condition {
@@ -113,7 +116,7 @@ export class Condition {
  *
  * @param {string} [prop] Name of the property key to crate condition against
  * @param {string} [operator] Operator for the condition. One of `is`, `eq`,
- * `ne`, `lt`, `lte`, `gt`, `gte`, `exists`, `missing`, `contain`, `notcontain`
+ * `ne`, `lt`, `lte`, `gt`, `gte`
  * @param {*} [value] Value for the property condition
  */
 export function cn(prop?: string, operator?: string, value?: any): Condition;
@@ -123,10 +126,14 @@ export function cn(prop?: string, operator?: string, value?: any): Condition;
  *
  * @param {string} [prop] Name of the property key to crate condition against
  * @param {string} [operator] Operator for the condition. One of `is`, `eq`,
- * `ne`, `lt`, `lte`, `gt`, `gte`, `exists`, `missing`, `contain`, `notcontain`
+ * `ne`, `lt`, `lte`, `gt`, `gte`
  * @param {*} [value] Value for the property condition
  */
-export function condition(prop?: string, operator?: string, value?: any): Condition;
+export function condition(
+    prop?: string,
+    operator?: string,
+    value?: any
+): Condition;
 
 /**
  * Class for building `Where` expressions.
