@@ -58,7 +58,7 @@ typings/
 .env
 
 # generated files
-lib
+# lib
 
 # experiments
 experiment.js

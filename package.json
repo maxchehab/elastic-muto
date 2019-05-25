@@ -1,6 +1,6 @@
 {
   "name": "@maxchehab/elastic-muto",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Easy expressive search queries for Elasticsearch",
   "main": "lib/index.js",
   "files": [
